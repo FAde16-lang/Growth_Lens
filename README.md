@@ -1,51 +1,48 @@
-# MERN Stack Application
+# Growth_Lens
 
-This is a full-stack web application built with the MERN stack (MongoDB, Express, React, Node.js).
+This is a modern, full-stack application built with the MERN stack (MongoDB, Express, React, Node.js) and wrapped in **Electron** to function seamlessly as a powerful cross-platform Desktop Application.
 
 ## Project Structure
 
 -   `frontend`: React application (Vite)
 -   `backend`: Node.js/Express API
+-   `electron-main.js`: The Electron wrapper connecting the compiled frontend with the backend capabilities.
 
-## Quick Start
-You need to run the backend and frontend in separate terminals.
+## Quick Start (Desktop App Mode)
 
-### 1. Backend Setup
-1.  Go to `backend` folder:
-    ```bash
-    cd backend
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  Set up environment variables:
-    -   Copy `.env.example` to `.env`
-    -   Update `MONGODB_URI` with your MongoDB connection string.
-4.  Start server:
-    ```bash
-    npm run dev
-    ```
+The application is configured to spin up the Database API, the Frontend Webpack dev server, and the Electron desktop window all at the same time with a single command!
 
-### 2. Frontend Setup
-1.  Go to `frontend` folder:
-    ```bash
-    cd frontend
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  Set up environment variables:
-    -   Copy `.env.example` to `.env`
-    -   Ensure `VITE_API_BASE_URL` matches your backend URL.
-4.  Start development server:
-    ```bash
-    npm run dev
-    ```
+### 1. Root Setup
+From the root of the project, install all dependencies simultaneously:
+```bash
+npm run install:all
+```
 
-## Features
--   **Separated Frontend & Backend**
--   **Authentication** (Placeholder JWT flow)
--   **Product Listing** (Mock data)
--   **Environment Configuration** via `.env` files
+### 2. Environment Variables
+- **Backend:** Inside the `/backend` folder, duplicate `.env.example` -> `.env` and configure your `MONGODB_URI`.
+- **Frontend:** Inside the `/frontend` folder, duplicate `.env.example` -> `.env` and verify `VITE_API_BASE_URL`.
+
+### 3. Launch the Application
+From the root of the project, run:
+```bash
+npm start
+```
+
+> **Note:** The `npm start` command uses `concurrently` to boot the backend, wait for the frontend Vite server, and finally deploy the native Electron desktop experience window cleanly over it.
+
+---
+
+## Alternative: Manual Web Mode (Browser Only)
+If you prefer developing in a standard web browser without the Electron window:
+
+### Backend
+```bash
+cd backend
+npm start
+```
+
+### Frontend
+```bash
+cd frontend
+npm run dev
+```
